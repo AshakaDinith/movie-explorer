@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# Movie Explorer App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application that allows users to search for movies, view details, and discover trending films. The app fetches real-time data from the TMDb (The Movie Database) API.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User login and registration
+- Movie search functionality
+- Display trending movies from TMDb API
+- View detailed information about movies including cast, trailers, and ratings
+- Add movies to favorites (for registered users)
+- Light/dark mode toggle
+- Responsive design for all device sizes
 
-### `npm start`
+## Setup and Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js (version 14 or higher)
+- npm or yarn
 
-### `npm test`
+### Installation Steps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd movie-explorer
+   ```
 
-### `npm run build`
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Create a .env file in the root directory with your TMDb API key:
+   ```
+   REACT_APP_TMDB_API_KEY=your_api_key_here
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   You can get a TMDb API key by signing up at [https://www.themoviedb.org/signup](https://www.themoviedb.org/signup) and requesting an API key from your account settings.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Update the API key in the `src/services/api.ts` file:
+   ```typescript
+   const API_KEY = process.env.REACT_APP_TMDB_API_KEY || 'YOUR_TMDB_API_KEY';
+   ```
 
-### `npm run eject`
+5. Start the development server:
+   ```
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Project Structure
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+├── components/        # Reusable UI components
+│   ├── common/        # Common components like Header, SearchBar, etc.
+│   └── movie/         # Movie-specific components like MovieCard, etc.
+├── contexts/          # React Context API for state management
+├── hooks/             # Custom React hooks
+├── pages/             # Application pages/routes
+├── services/          # API services
+├── types/             # TypeScript type definitions
+└── utils/             # Utility functions
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React 19
+- TypeScript
+- React Router for navigation
+- Material-UI (MUI) for UI components
+- Axios for API requests
+- React Context API for state management
+- Local Storage for data persistence
 
-## Learn More
+## API Integration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This application uses The Movie Database (TMDb) API to fetch movie data. The following endpoints are used:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `/trending/movie/week` - Get trending movies
+- `/search/movie` - Search for movies
+- `/movie/{id}` - Get detailed movie information
+- `/genre/movie/list` - Get movie genres
+- `/discover/movie` - Discover movies by genre
+
+## License
+
+This project is licensed under the MIT License.
